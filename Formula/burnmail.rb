@@ -13,6 +13,6 @@ class Burnmail < Formula
   end
 
   test do
-    assert_match "burnmail", shell_output("#{bin}/burnmail --version")
+    assert_match "burnmail", shell_output("#{bin}/burnmail version")
   end
 end
