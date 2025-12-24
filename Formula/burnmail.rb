@@ -5,7 +5,6 @@ class Burnmail < Formula
   sha256 "fc5df6f438574f7f16d6fc248f97f2cf36893ac9338ad33c79b3f3fbdc851270"
   license "MIT"
   head "https://github.com/fraluc06/burnmail.git", branch: "main"
-  
 
   depends_on "go" => :build
 
