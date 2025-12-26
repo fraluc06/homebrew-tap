@@ -14,14 +14,57 @@ on:
         description: 'Version (e.g., v0.1.0)'
         required: true
         type: string
+  schedule:
+    - cron: '0 0 1 * *'
 
 env:
   FORMULA_TAP: fraluc06/homebrew-tap
 
 jobs:
+  check-new-releases:
+    name: Check for new releases
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    outputs:
+      has-new-tags: ${{ steps.check.outputs.has-new-tags }}
+      projects: ${{ steps.check.outputs.projects }}
+      versions: ${{ steps.check.outputs.versions }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Check for new tags
+        id: check
+        run: |
+          HAS_NEW_TAGS=false
+          PROJECTS=""
+          VERSIONS=""
+          
+          for project in mkvtea burnmail; do
+            LATEST_TAG=$(gh api repos/fraluc06/$project/releases/latest --jq '.tag_name' 2>/dev/null || echo "")
+            
+            if [ -n "$LATEST_TAG" ]; then
+              if ! grep -q "version \"$LATEST_TAG\"" Formula/$project.rb 2>/dev/null; then
+                HAS_NEW_TAGS=true
+                PROJECTS="$PROJECTS,$project"
+                VERSIONS="$VERSIONS,$LATEST_TAG"
+              fi
+            fi
+          done
+          
+          PROJECTS="${PROJECTS#,}"
+          VERSIONS="${VERSIONS#,}"
+          
+          echo "has-new-tags=$HAS_NEW_TAGS" >> "$GITHUB_OUTPUT"
+          echo "projects=$PROJECTS" >> "$GITHUB_OUTPUT"
+          echo "versions=$VERSIONS" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   determine-config:
     name: Determine project configuration
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
     outputs:
       formula-name: ${{ steps.config.outputs.formula-name }}
       formula-path: ${{ steps.config.outputs.formula-path }}
@@ -85,5 +128,61 @@ jobs:
           create-pullrequest: true
           tag-name: ${{ needs.determine-config.outputs.tag-name }}
           download-url: ${{ needs.determine-config.outputs.download-url }}
+        env:
+          COMMITTER_TOKEN: ${{ secrets.COMMITTER_TOKEN }}
+
+  auto-update-formulas:
+    name: Auto update formulas
+    runs-on: ubuntu-latest
+    needs: check-new-releases
+    if: needs.check-new-releases.outputs.has-new-tags == 'true'
+    strategy:
+      matrix:
+        project: ${{ fromJson(needs.check-new-releases.outputs.projects) }}
+        version: ${{ fromJson(needs.check-new-releases.outputs.versions) }}
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Determine configuration
+        id: config
+        run: |
+          CLEAN_VERSION="${{ matrix.version }}"
+          
+          if [ "${{ matrix.project }}" = "mkvtea" ]; then
+            FORMULA_NAME="mkvtea"
+            REPO_URL="fraluc06/mkvtea"
+            TAG_NAME="$CLEAN_VERSION"
+            DOWNLOAD_URL="https://github.com/$REPO_URL/archive/refs/tags/v$CLEAN_VERSION.tar.gz"
+          elif [ "${{ matrix.project }}" = "burnmail" ]; then
+            FORMULA_NAME="burnmail"
+            REPO_URL="fraluc06/burnmail"
+            TAG_NAME="$CLEAN_VERSION"
+            DOWNLOAD_URL="https://github.com/$REPO_URL/archive/refs/tags/v$CLEAN_VERSION.tar.gz"
+          fi
+          
+          {
+            echo "formula-name=$FORMULA_NAME"
+            echo "formula-path=Formula/$FORMULA_NAME.rb"
+            echo "repo-url=$REPO_URL"
+            echo "clean-version=$CLEAN_VERSION"
+            echo "tag-name=$TAG_NAME"
+            echo "download-url=$DOWNLOAD_URL"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Update formula
+        uses: mislav/bump-homebrew-formula-action@v3
+        with:
+          formula-name: ${{ steps.config.outputs.formula-name }}
+          formula-path: ${{ steps.config.outputs.formula-path }}
+          homebrew-tap: ${{ env.FORMULA_TAP }}
+          base-branch: main
+          create-branch: true
+          create-pullrequest: true
+          tag-name: ${{ steps.config.outputs.tag-name }}
+          download-url: ${{ steps.config.outputs.download-url }}
         env:
           COMMITTER_TOKEN: ${{ secrets.COMMITTER_TOKEN }}
