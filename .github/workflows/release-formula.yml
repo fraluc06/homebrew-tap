@@ -55,9 +55,11 @@ jobs:
           PROJECTS="${PROJECTS#,}"
           VERSIONS="${VERSIONS#,}"
           
-          echo "has-new-tags=$HAS_NEW_TAGS" >> "$GITHUB_OUTPUT"
-          echo "projects=$PROJECTS" >> "$GITHUB_OUTPUT"
-          echo "versions=$VERSIONS" >> "$GITHUB_OUTPUT"
+          {
+            echo "has-new-tags=$HAS_NEW_TAGS"
+            echo "projects=$PROJECTS"
+            echo "versions=$VERSIONS"
+          } >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
