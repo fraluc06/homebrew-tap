@@ -5,7 +5,7 @@ class Mkvtea < Formula
   sha256 "4c71bd3d6ce708d154114135f1eba9d4623cbc917cceaf1d6423b2b9cf7936a4"
   license "AGPL-3.0-or-later"
   head "https://github.com/fraluc06/mkvtea.git", branch: "main"
-  
+
   livecheck do
     url :stable
     regex(/^v?(\d+(?:\.\d+)+)$/i)
