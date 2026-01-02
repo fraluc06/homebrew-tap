@@ -11,6 +11,14 @@ class Burnmail < Formula
     regex(/^v?(\d+(?:\.\d+)+)$/i)
   end
 
+  bottle do
+    root_url "https://github.com/fraluc06/homebrew-tap/releases/download/burnmail-1.3.0"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "5c4a4e32a78da3756fcb65d7794985c0af146da5bb1bc11722ed5c6d3e123099"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e240aefab34569effaf987427fb7cce8677df7801e2826ee21adc00dc7c6eb19"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "4f664f349d628589f43635d2dcbadfd1c3ab91371b0c46b681085769cd51aa56"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "993356124da1e74bde92edd6f0308f7c940d3fc740b844267cd7e358e686ad93"
+  end
+
   depends_on "go" => :build
 
   def install
