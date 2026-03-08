@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Update formulae using Livecheck
-        uses: dawidd6/action-homebrew-bump-formula@v3
+        uses: dawidd6/action-homebrew-bump-formula@v7
         with:
           token: ${{ secrets.COMMITTER_TOKEN }}
           user_name: "github-actions[bot]"
