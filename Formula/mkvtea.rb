@@ -1,8 +1,8 @@
 class Mkvtea < Formula
   desc "Blazing-fast batch processing tool for managing anime/TV series MKV libraries"
   homepage "https://github.com/fraluc06/mkvtea"
-  url "https://github.com/fraluc06/mkvtea/archive/refs/tags/v0.1.2.tar.gz"
-  sha256 "4c71bd3d6ce708d154114135f1eba9d4623cbc917cceaf1d6423b2b9cf7936a4"
+  url "https://github.com/fraluc06/mkvtea/archive/refs/tags/v1.0.0.tar.gz"
+  sha256 "9131b067f8cec698f40b2dd63b55525789204bf166e897f7029d42fec299835d"
   license "AGPL-3.0-or-later"
   head "https://github.com/fraluc06/mkvtea.git", branch: "main"
 
