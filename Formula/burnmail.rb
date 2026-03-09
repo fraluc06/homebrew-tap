@@ -12,11 +12,11 @@ class Burnmail < Formula
   end
 
   bottle do
-    root_url "https://github.com/fraluc06/homebrew-tap/releases/download/burnmail-1.3.0"
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "5c4a4e32a78da3756fcb65d7794985c0af146da5bb1bc11722ed5c6d3e123099"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "e240aefab34569effaf987427fb7cce8677df7801e2826ee21adc00dc7c6eb19"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "4f664f349d628589f43635d2dcbadfd1c3ab91371b0c46b681085769cd51aa56"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "993356124da1e74bde92edd6f0308f7c940d3fc740b844267cd7e358e686ad93"
+    root_url "https://github.com/fraluc06/homebrew-tap/releases/download/burnmail-1.4.1"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "1617703f4a069927649d1bf721760500210abf99eb70af97663deaa9439a988a"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "90c4c789d7035daef24abd19fa179e8b307f7ce8998a848043331f4fb8b45b8b"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "bdb7b0dc4204757844d96cfab941d073b8696ad1e588ab3151c7139b7cc1c80f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "035a0a9325964e1f189b5d9ff9d11daebf39875eb46d3a5c6695421e9f90f301"
   end
 
   depends_on "go" => :build
