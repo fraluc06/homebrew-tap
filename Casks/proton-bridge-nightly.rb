@@ -2,15 +2,20 @@ cask "proton-bridge-nightly" do
   version :latest
   sha256 :no_check
 
-  on_arm do
-    url "https://nightly.link/mnixry/proton-bridge/workflows/build-multi-platform/master/build-macos-latest.zip"
-  end
-  on_intel do
-    url "https://nightly.link/mnixry/proton-bridge/workflows/build-multi-platform/master/build-macos-15-intel.zip"
+  on_macos do
+    on_arm do
+      url "https://nightly.link/mnixry/proton-bridge/workflows/build-multi-platform/master/build-macos-latest.zip",
+          verified: "nightly.link/mnixry/proton-bridge/"
+    end
+    on_intel do
+      url "https://nightly.link/mnixry/proton-bridge/workflows/build-multi-platform/master/build-macos-15-intel.zip",
+          verified: "nightly.link/mnixry/proton-bridge/"
+    end
   end
 
   on_linux do
-    url "https://nightly.link/mnixry/proton-bridge/workflows/build-multi-platform/master/build-ubuntu-latest.zip"
+    url "https://nightly.link/mnixry/proton-bridge/workflows/build-multi-platform/master/build-ubuntu-latest.zip",
+        verified: "nightly.link/mnixry/proton-bridge/"
   end
 
   name "Proton Mail Bridge (nightly)"
