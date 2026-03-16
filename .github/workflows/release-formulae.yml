@@ -1,6 +1,9 @@
 name: Release Formulae (Livecheck)
 
 on:
+  release:
+    types: [ released ]
+
   workflow_dispatch:
     inputs:
       formula:
