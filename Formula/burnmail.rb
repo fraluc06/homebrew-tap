@@ -8,7 +8,7 @@ class Burnmail < Formula
 
   livecheck do
     url :stable
-    regex(/^v?(\d+(?:\.\d+)+)$/i)
+    :github_latest
   end
 
   bottle do
@@ -22,7 +22,7 @@ class Burnmail < Formula
   depends_on "go" => :build
 
   def install
-    system "go", "build", "-ldflags", "-s -w", "-o", bin/"burnmail"
+    system "go", "build", *std_go_args(ldflags: "-s -w")
   end
 
   test do
