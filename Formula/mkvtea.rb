@@ -12,11 +12,11 @@ class Mkvtea < Formula
   end
 
   bottle do
-    root_url "https://github.com/fraluc06/homebrew-tap/releases/download/mkvtea-1.1.1"
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "646496351bcb073df60ce3cd0b30628c250098077f9bfdd9bfd27306e08cd5bc"
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "154a06e666c221e6b8440d56ba9f49f54a3511bc247a5056df242cd4efd91415"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "23f00d72d159ecc1f95aa1773f881d449884e01ca536db76646c117a47d69ffb"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "80b158b4dcf66e74f7f59c76288a2dec71954dcb1cfb843c24eb5dfc7b49229d"
+    root_url "https://github.com/fraluc06/homebrew-tap/releases/download/mkvtea-1.1.2"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:   "3a7d8bfdb3ccf03b30bdab4b95a7cfeb8309066f53bf142fe0b0ba9a4c244db7"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "9e4a5ea7ec81bdfc516df358b38a8e4c7d10947127f86e208770b0bf30613a05"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "05d1b14bd64808af28e0f7ae247ed76a982f50e998893f6535af0539e4ac01b8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "15339aaa1c375f9e0a4a03449ebe9839869ac608cb91872e55bb11d3d98793db"
   end
   depends_on "go" => :build
   depends_on "mkvtoolnix"
