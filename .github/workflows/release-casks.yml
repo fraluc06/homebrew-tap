@@ -1,0 +1,37 @@
+name: Release Casks (Livecheck)
+
+on:
+  release:
+    types: [ released ]
+
+  workflow_dispatch:
+    inputs:
+      cask:
+        description: 'Cask to release (leave empty to check all)'
+        required: false
+        default: ''
+  schedule:
+    - cron: '0 5 1 * *'
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  bump:
+    name: Bump casks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # to push commits
+    steps:
+      - name: Update casks using Livecheck
+        uses: LanikSJ/homebrew-bump-cask@v1
+        with:
+          token: ${{ secrets.COMMITTER_TOKEN }}
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
+          tap: fraluc06/homebrew-tap
+          cask: ${{ inputs.cask }}
+          livecheck: true
