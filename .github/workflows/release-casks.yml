@@ -22,7 +22,7 @@ concurrency:
 jobs:
   bump:
     name: Bump casks
-    runs-on: ubuntu-latest
+    runs-on: macos-26
     permissions:
       contents: write # to push commits
     steps:
@@ -30,8 +30,6 @@ jobs:
         uses: LanikSJ/homebrew-bump-cask@v1
         with:
           token: ${{ secrets.COMMITTER_TOKEN }}
-          user_name: github-actions[bot]
-          user_email: github-actions[bot]@users.noreply.github.com
           tap: fraluc06/homebrew-tap
           cask: ${{ inputs.cask }}
           livecheck: true
