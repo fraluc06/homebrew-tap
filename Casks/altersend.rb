@@ -1,12 +1,16 @@
 cask "altersend" do
-  arch arm: "-arm64", intel: ""
-
   version "1.0.0"
-  sha256 arm:   "a4c993cd751164bbc69f1c7b6d5438b3a625813fc91c474e978897cb6a36969b",
-         intel: "6146334a9e539e7281df9d45138463cc659e5da3b25183818ee18adb2407c644"
 
-  url "https://github.com/denislupookov/altersend/releases/download/v#{version}/AlterSend-#{version}#{arch}.dmg",
-      verified: "github.com/denislupookov/altersend/"
+  on_macos do
+    arch arm: "-arm64", intel: ""
+
+    sha256 arm:   "a4c993cd751164bbc69f1c7b6d5438b3a625813fc91c474e978897cb6a36969b",
+           intel: "6146334a9e539e7281df9d45138463cc659e5da3b25183818ee18adb2407c644"
+
+    url "https://github.com/denislupookov/altersend/releases/download/v#{version}/AlterSend-#{version}#{arch}.dmg",
+        verified: "github.com/denislupookov/altersend/"
+  end
+
   name "AlterSend"
   desc "Secure, peer-to-peer file transfer app"
   homepage "https://altersend.com/"
