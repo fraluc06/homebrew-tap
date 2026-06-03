@@ -32,4 +32,5 @@ jobs:
           token: ${{ secrets.COMMITTER_TOKEN }}
           tap: fraluc06/homebrew-tap
           cask: ${{ inputs.cask }}
+          force: true
           livecheck: true
