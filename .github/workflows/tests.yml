@@ -20,7 +20,7 @@ jobs:
         os: [ macos-15-intel, macos-26 ]
         include:
           - os: ubuntu-latest
-            container: ghcr.io/homebrew/brew:latest # v5.1.14
+            container: ghcr.io/homebrew/ubuntu24.04:latest # v5.1.15
     runs-on: ${{ matrix.os }}
     container: ${{ matrix.container }}
     permissions:

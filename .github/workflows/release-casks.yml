@@ -27,7 +27,7 @@ jobs:
       contents: write # to push commits
     steps:
       - name: Update casks using Livecheck
-        uses: friesi23/action-homebrew-bump-cask@561bbe447f8915a50a62e65483061bea1e7f136f #v2
+        uses: friesi23/action-homebrew-bump-cask@561bbe447f8915a50a62e65483061bea1e7f136f # v2.0
         with:
           token: ${{ secrets.COMMITTER_TOKEN }}
           tap: fraluc06/homebrew-tap
