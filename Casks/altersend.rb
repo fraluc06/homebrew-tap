@@ -1,11 +1,11 @@
 cask "altersend" do
-  version "1.1.0"
+  version "1.2.0"
 
   on_macos do
     arch arm: "-arm64", intel: ""
 
-    sha256 arm:   "e0dbe5d3cf30ddac924bc5d70351a5e156f15b2d047c9f776593a8c9faed1cb9",
-           intel: "120d9f51fbe91f0f829e077823b46519d04b9504c4b7cb77f8872c00ba2c3c62"
+    sha256 arm:   "f4fdf6b86147f6f6f04da884478c070cf90d214382ad72588caca9da13de80e4",
+           intel: "bd135617983d3c3d30787f1748807a80372727ccc9736684f63715b90503b233"
 
     url "https://github.com/denislupookov/altersend/releases/download/v#{version}/AlterSend-#{version}#{arch}.dmg",
         verified: "github.com/denislupookov/altersend/"
