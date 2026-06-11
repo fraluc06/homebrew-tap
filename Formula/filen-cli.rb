@@ -12,6 +12,12 @@ class FilenCli < Formula
     regex(/^filen-cli@v?(\d+\.\d+\.\d+)$/i)
   end
 
+  bottle do
+    root_url "https://github.com/fraluc06/homebrew-tap/releases/download/filen-cli-0.2.6"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:  "a84340aea907afaa12dd78042c393eef5294ea433dd23c62f769b050d872fd43"
+    sha256 cellar: :any,                 x86_64_linux: "94d5ab02a18477fda7924c831626b8c7c0d9e2540162b1c76141f407da754940"
+  end
+
   # cmake is required by heif-decoder/build.rs to compile libde265 and libheif
   depends_on "cmake" => :build
   # rustup is needed to install the nightly toolchain required by the project
