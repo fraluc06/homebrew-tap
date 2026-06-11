@@ -1,9 +1,9 @@
 class FilenCli < Formula
   desc "Command-line interface for Filen encrypted cloud storage"
   homepage "https://github.com/FilenCloudDienste/filen-rs/tree/main/filen-cli"
-  url "https://github.com/FilenCloudDienste/filen-rs/archive/refs/tags/filen-cli@v0.2.5.tar.gz"
-  sha256 "ff3ffb65fea1af416eb7c56d0df62cb00df168ac44482c72dff0f78d96128fa2"
-  license "AGPL-3.0"
+  url "https://github.com/FilenCloudDienste/filen-rs/archive/refs/tags/filen-cli@v0.2.6.tar.gz"
+  sha256 "30f4f3c3c5637f29373c1e23148025948cef7e8f3b560daf01d9e4f2c8437302"
+  license "AGPL-3.0-only"
   head "https://github.com/FilenCloudDienste/filen-rs.git", branch: "main"
 
   livecheck do
@@ -31,8 +31,7 @@ class FilenCli < Formula
     ENV["CARGO_HOME"] = buildpath/".cargo"
 
     # Read the pinned nightly version from rust-toolchain.toml included in the tarball
-    toolchain = Utils.safe_popen_read("grep", "channel", "rust-toolchain.toml").strip.split('"')[1]
-    toolchain = "nightly" if toolchain.blank?
+    toolchain = File.read("rust-toolchain.toml")[/channel\s*=\s*"([^"]+)"/, 1] || "nightly"
 
     # Install the toolchain pinned by the project (e.g. nightly-2025-08-14)
     system "rustup", "toolchain", "install", toolchain, "--profile", "minimal", "--component", "rust-src"
@@ -49,7 +48,7 @@ class FilenCli < Formula
 
   test do
     assert_match version.to_s, shell_output("#{bin}/filen-cli --version")
-    assert_match "Email or password wrong",
+    assert_match "Failed to log in",
       shell_output("#{bin}/filen-cli --email lol@lol.com --password lol --skip-update 2>&1", 1)
   end
 end
