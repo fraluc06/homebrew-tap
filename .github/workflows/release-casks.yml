@@ -29,8 +29,8 @@ jobs:
       - name: Trust tap
         run: |
           mkdir -p ~/.homebrew ~/.config/homebrew
-          echo '{"trustedtaps":["fraluc06/homebrew-tap"]}' > ~/.homebrew/trust.json
-          echo '{"trustedtaps":["fraluc06/homebrew-tap"]}' > ~/.config/homebrew/trust.json
+          echo '{"trustedtaps":["fraluc06/homebrew-tap","fraluc06/tap"]}' > ~/.homebrew/trust.json
+          echo '{"trustedtaps":["fraluc06/homebrew-tap","fraluc06/tap"]}' > ~/.config/homebrew/trust.json
 
       - name: Update casks using Livecheck
         uses: friesi23/action-homebrew-bump-cask@561bbe447f8915a50a62e65483061bea1e7f136f # v2.0
