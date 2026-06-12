@@ -19,9 +19,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  HOMEBREW_NO_REQUIRE_TAP_TRUST: 1
-
 jobs:
   bump:
     name: Bump casks
@@ -29,6 +26,12 @@ jobs:
     permissions:
       contents: write # to push commits
     steps:
+      - name: Trust tap
+        run: |
+          mkdir -p ~/.homebrew ~/.config/homebrew
+          echo '{"trustedtaps":["fraluc06/homebrew-tap"]}' > ~/.homebrew/trust.json
+          echo '{"trustedtaps":["fraluc06/homebrew-tap"]}' > ~/.config/homebrew/trust.json
+
       - name: Update casks using Livecheck
         uses: friesi23/action-homebrew-bump-cask@561bbe447f8915a50a62e65483061bea1e7f136f # v2.0
         with:
