@@ -13,9 +13,9 @@ class FilenCli < Formula
   end
 
   bottle do
-    root_url "https://github.com/fraluc06/homebrew-tap/releases/download/filen-cli-0.2.6"
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:  "ac164cf9b5301a9e9da3646584da4b53d9081253c6e6b4168b3120224d265f68"
-    sha256 cellar: :any,                 x86_64_linux: "7b6cd64263eb804b8d682cf082b2c53888ec5d664d47eea4326d71470a77ae1f"
+    root_url "https://github.com/fraluc06/homebrew-tap/releases/download/filen-cli-0.2.7"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:  "41d41a58346a54d795c37fb7cc5aabd73d5957f65c74d0f342fda609f21d9bd4"
+    sha256 cellar: :any,                 x86_64_linux: "7062915b76f6a6d21462891004c66327f006d467d4d255d767e2ea3741bf7415"
   end
 
   # cmake is required by heif-decoder/build.rs to compile libde265 and libheif
