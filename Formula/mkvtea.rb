@@ -12,9 +12,9 @@ class Mkvtea < Formula
   end
 
   bottle do
-    root_url "https://github.com/fraluc06/homebrew-tap/releases/download/mkvtea-1.1.3"
-    sha256 cellar: :any_skip_relocation, arm64_tahoe:  "eb042336f40593d03d0b6b0c3818ac206ca63715b11aa4c294f4cfe03fcc6fb1"
-    sha256 cellar: :any,                 x86_64_linux: "d50aa371b89ba95aa7233a71b3c465d599fca90abf92a6a81117953dbb7033c4"
+    root_url "https://github.com/fraluc06/homebrew-tap/releases/download/mkvtea-1.2.0"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:  "106102e93d6d8f9e339ef4fdec8676aeda391593b5e101889de114caacacd481"
+    sha256 cellar: :any,                 x86_64_linux: "385a993f51266211082830163c9dd57b1e029609fd2ee52372ae89d64d1a34a0"
   end
   depends_on "go" => :build
   depends_on "mkvtoolnix"
