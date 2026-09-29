@@ -11,6 +11,12 @@ class Burnmail < Formula
     :github_latest
   end
 
+  bottle do
+    root_url "https://github.com/fraluc06/homebrew-tap/releases/download/burnmail-2.0.0"
+    sha256 cellar: :any_skip_relocation, arm64_tahoe:  "498022f92e7841f7069c00b30d63f06bd8d5e0bdc42fae2291b7fab2bdd6a53c"
+    sha256 cellar: :any,                 x86_64_linux: "52885f985431bc8737d94a56d6de553db93f8c1a69b4918497fc7d879d4bb4fc"
+  end
+
   depends_on "go" => :build
 
   def install
