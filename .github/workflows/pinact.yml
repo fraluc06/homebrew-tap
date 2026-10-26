@@ -30,11 +30,6 @@ jobs:
           git config --global gpg.format ssh
           git config --global user.signingkey "$ssh_key_file"
           git config --global commit.gpgsign true
-          # Commit identity of the account that owns the signing key:
-          # GitHub marks the commit "Verified" only if the committer
-          # email belongs to that account (not github-actions[bot]).
-          git config --global user.name "Francesco Lucarelli"
-          git config --global user.email "67560467+fraluc06@users.noreply.github.com"
 
       - name: Run pinact run -u
         uses: suzuki-shunsuke/pinact-action@896d595f299e71d65b9d28349d6956abe144390a # v3.0.0
@@ -45,7 +40,14 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
+          # sign-commits is not usable here: the GITHUB_TOKEN cannot create
+          # commits that touch .github/workflows (needs a GitHub App token).
           token: ${{ secrets.COMMITTER_TOKEN || secrets.GITHUB_TOKEN }}
+          # GitHub verifies an SSH signature against the committer email, so the
+          # committer must be the account that owns the signing key. The action's
+          # default would be github-actions[bot] -> "unknown_key".
+          committer: Francesco Lucarelli <67560467+fraluc06@users.noreply.github.com>
+          author: Francesco Lucarelli <67560467+fraluc06@users.noreply.github.com>
           commit-message: 'chore(deps): update GitHub Actions via pinact'
           title: 'chore(deps): update GitHub Actions via pinact'
           body: |
