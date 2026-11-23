@@ -48,6 +48,6 @@ class FilenCli < Formula
   test do
     assert_match version.to_s, shell_output("#{bin}/filen-cli --version")
     assert_match(/Failed to log in|Email or password wrong/,
-      shell_output("#{bin}/filen-cli --email lol@lol.com --password lol --skip-update 2>&1", 1))
+      shell_output("#{bin}/filen-cli --email lol@lol.com --password lol --skip-update ls 2>&1", 1))
   end
 end
