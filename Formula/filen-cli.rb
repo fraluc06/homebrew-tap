@@ -1,8 +1,8 @@
 class FilenCli < Formula
   desc "Command-line interface for Filen encrypted cloud storage"
   homepage "https://github.com/FilenCloudDienste/filen-rs/tree/main/filen-cli"
-  url "https://github.com/FilenCloudDienste/filen-rs/archive/refs/tags/filen-cli@v0.2.9.tar.gz"
-  sha256 "729190e6be1fd28aa77c0f774eec81e9f91ea453e0882e0a7943bfdf91c9bfc3"
+  url "https://github.com/FilenCloudDienste/filen-rs/archive/refs/tags/filen-cli@v0.3.0.tar.gz"
+  sha256 "602431c3998ea6830a420fd84e384c1c97f56d49d0502cbbfc50cf8f23099c6f"
   license "AGPL-3.0"
   head "https://github.com/FilenCloudDienste/filen-rs.git", branch: "main"
 
